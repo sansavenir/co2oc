@@ -3,51 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        android:layout_marginLeft="10dp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
 
         <TextView
             android:id="@+id/item.name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name:"
-            android:textSize="15dp"
             android:layout_marginTop="10dp"
-            />
+            android:text="name:"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/item.price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="price:"
-            android:textSize="15dp"
             android:layout_marginTop="5dp"
-            />
+            android:text="price:"
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/item.quant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="quant:"
-            android:textSize="15dp"
             android:layout_marginTop="5dp"
-            />
+            android:text="quant:"
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/item.reduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="reduction:"
-            android:textSize="15dp"
             android:layout_marginTop="5dp"
+            android:text="reduction:"
+            android:textSize="15dp" />
+
+        <include
+            layout="@layout/nutrients_table"
             />
 
+        <TextView
+            android:id="@+id/item.link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="link"
+            android:gravity="center"
+            android:textSize="20dp" />
+
+
+
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
