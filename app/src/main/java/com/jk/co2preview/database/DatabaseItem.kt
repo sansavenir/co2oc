@@ -37,4 +37,12 @@ class DatabaseItem{
     fun get_link(): String?{
         return this.link
     }
+
+    fun get_desc(): String?{
+        return this.desc
+    }
+
+    fun get_origin(): String?{
+        return this.origin
+    }
 }
