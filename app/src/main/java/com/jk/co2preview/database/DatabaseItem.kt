@@ -1,5 +1,7 @@
 package com.jk.co2preview.database
 
+
+//@Parcelize
 class DatabaseItem{
     private var id : Int = -1
     private var name: String? = null
@@ -10,8 +12,9 @@ class DatabaseItem{
     private var price: Float? = null
     private var orig_price: Float? = null
     private var link: String? = null
+    private var season: String? = null
 
-    constructor(id: Int, name: String?, desc: String?, gen_info: String?, nutrients: String?, origin: String?, price: Float?, orig_price: Float?, link: String?){
+    constructor(id: Int, name: String?, desc: String?, gen_info: String?, nutrients: String?, origin: String?, price: Float?, orig_price: Float?, link: String?, season: String?){
         this.id = id
         this.name= name
         this.desc= desc
@@ -21,6 +24,7 @@ class DatabaseItem{
         this.price= price
         this.orig_price= orig_price
         this.link= link
+        this.season= season
     }
 
     fun get_nutrients(): MutableList<List<String>>? {
@@ -44,5 +48,13 @@ class DatabaseItem{
 
     fun get_origin(): String?{
         return this.origin
+    }
+
+    fun get_price(): Float?{
+        return this.price
+    }
+
+    fun get_name(): String?{
+        return this.name
     }
 }

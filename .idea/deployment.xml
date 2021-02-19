@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="al2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="al6">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="heavyweight">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="jk@3.141.115.74:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="lago">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="leonhard">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="syssec">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zazu">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="zazu2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/app" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

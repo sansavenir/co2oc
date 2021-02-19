@@ -29,8 +29,8 @@ class BuyItemActivity : AppCompatActivity() {
 
 
         // Tabs Customization
-        tab_layout = findViewById<TabLayout>(R.id.tab_layout)
-        tabs_viewpager = findViewById<ViewPager2>(R.id.tabs_viewpager)
+        tab_layout = findViewById(R.id.tab_layout)
+        tabs_viewpager = findViewById(R.id.tabs_viewpager)
 
 
         tab_layout!!.setSelectedTabIndicatorColor(Color.WHITE)
@@ -65,10 +65,8 @@ class BuyItemActivity : AppCompatActivity() {
             }
         }.attach()
 
-        setCustomTabTitles()
+//        setCustomTabTitles()
 
-
-        // ...
     }
 
     private fun setCustomTabTitles() {

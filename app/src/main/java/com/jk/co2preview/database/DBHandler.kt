@@ -50,13 +50,62 @@ class DBHandler(context: Context, name: String?,
             val price : Float? = cursor.getFloatOrNull(6)
             val orig_price : Float? = cursor.getFloatOrNull(7)
             val link : String? = cursor.getStringOrNull(8)
+            val season : String? = cursor.getStringOrNull(9)
 
-            product = id?.let { DatabaseItem(it, name, desc, gen_info, nutrients, origin, price, orig_price, link) }
+            product = id?.let { DatabaseItem(it, name, desc, gen_info, nutrients, origin, price, orig_price, link, season) }
             cursor.close()
         }
 
         db.close()
         return product
+    }
+
+    fun getSeasonalProducts(month: Int): MutableList<DatabaseItem> {
+
+        val query = "SELECT * FROM $TABLE_PRODUCTS WHERE season like \'% $month %\'"
+
+        val db = this.writableDatabase
+
+        val cursor = db.rawQuery(query, null)
+
+        var products : MutableList<DatabaseItem> = mutableListOf()
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+
+                val id = Integer.parseInt(cursor.getStringOrNull(0))
+                val name: String? = cursor.getStringOrNull(1)
+                val desc: String? = cursor.getStringOrNull(2)
+                val gen_info: String? = cursor.getStringOrNull(3)
+                val nutrients: String? = cursor.getStringOrNull(4)
+                val origin: String? = cursor.getStringOrNull(5)
+                val price: Float? = cursor.getFloatOrNull(6)
+                val orig_price: Float? = cursor.getFloatOrNull(7)
+                val link: String? = cursor.getStringOrNull(8)
+                val season: String? = cursor.getStringOrNull(9)
+
+                val product = id?.let {
+                    DatabaseItem(
+                        it,
+                        name,
+                        desc,
+                        gen_info,
+                        nutrients,
+                        origin,
+                        price,
+                        orig_price,
+                        link,
+                        season
+                    )
+                }
+                products.add(product)
+                cursor.moveToNext();
+            }
+            cursor.close()
+        }
+
+        db.close()
+        return products
     }
 
     companion object {

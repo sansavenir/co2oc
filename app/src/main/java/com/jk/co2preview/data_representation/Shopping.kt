@@ -4,12 +4,14 @@ import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
+import com.jk.co2preview.database.DatabaseItem
 import java.lang.Math.round
 import java.time.LocalDate
 
 
 class Shopping(items: MutableList<BuyItem>) {
     private var items: MutableList<BuyItem> = mutableListOf()
+    private var dbItems: MutableList<DatabaseItem> = mutableListOf()
 
     init {
         this.items = items
@@ -32,6 +34,7 @@ class Shopping(items: MutableList<BuyItem>) {
     fun get_items(): MutableList<BuyItem> {
         return items
     }
+
 }
 
 //@Parcelize
@@ -67,6 +70,7 @@ data class BuyItem(
     }
 
     companion object CREATOR : Parcelable.Creator<BuyItem> {
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun createFromParcel(parcel: Parcel): BuyItem {
             return BuyItem(parcel)
         }
