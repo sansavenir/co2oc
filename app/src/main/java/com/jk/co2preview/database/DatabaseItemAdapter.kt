@@ -1,6 +1,7 @@
 package com.jk.co2preview
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.jk.co2preview.ItemActivity.ItemActivity
 import com.jk.co2preview.database.DatabaseItem
 
 
@@ -47,11 +49,11 @@ class DatabaseItemAdapter (private val mDatabaseItems: List<DatabaseItem>) : Rec
         nameView.text = databaseItem.get_name()
         val costView = viewHolder.costTextView
         costView.text = databaseItem.get_price().toString()
-//        viewHolder.recyclerView.setOnClickListener{
-//            val intent = Intent(context, ItemActivity::class.java)
-//            intent.putExtra("item", databaseItem)
-//            context?.startActivity(intent)
-//        }
+        viewHolder.recyclerView.setOnClickListener{
+            val intent = Intent(context, ItemActivity::class.java)
+            intent.putExtra("item", databaseItem)
+            context?.startActivity(intent)
+        }
 
     }
 

@@ -10,8 +10,6 @@ import android.widget.TableLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jk.co2preview.R
-import com.jk.co2preview.data_representation.BuyItem
-import com.jk.co2preview.database.DBHandler
 import com.jk.co2preview.database.DatabaseItem
 
 
@@ -22,7 +20,7 @@ class ItemActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
         val bundle = intent.extras
-        val item = bundle?.get("item") as BuyItem
+        val item = bundle?.get("item") as DatabaseItem?
         val nameTextView = findViewById<TextView>(R.id.item_name)
         val priceTextView = findViewById<TextView>(R.id.item_price)
         val quantTextView = findViewById<TextView>(R.id.item_quant)
@@ -30,17 +28,12 @@ class ItemActivity : Activity() {
         val linkTextView = findViewById<TextView>(R.id.item_link)
         val originTextView = findViewById<TextView>(R.id.item_origin)
 
+        if(item != null) {
+            nameTextView.text = item.get_name()
+            priceTextView.text = item.get_price().toString()
+//        quantTextView.text = item.quantity.toString()
 
-        nameTextView.text = item.name
-        priceTextView.text = item.price.toString()
-        quantTextView.text = item.quantity.toString()
-
-        val dbHandler = DBHandler(this, null, null, 1)
-
-        val product: DatabaseItem? = item.name?.let { dbHandler.findProduct(it) }
-
-        if(product != null) {
-            val nutrients: MutableList<List<String>>? = product.get_nutrients()
+            val nutrients: MutableList<List<String>>? = item.get_nutrients()
 
             if (nutrients != null) {
                 val tableView = findViewById<TableLayout>(R.id.nutrients_table)
@@ -48,16 +41,22 @@ class ItemActivity : Activity() {
                 for (i in nutrients.indices) {
                     val inner: List<String> = nutrients[i]
                     for (j in inner.indices) {
-                        val textView = findViewById<TextView>(resources.getIdentifier("z$i$j", "id", this.getPackageName()))
+                        val textView = findViewById<TextView>(
+                            resources.getIdentifier(
+                                "z$i$j",
+                                "id",
+                                this.getPackageName()
+                            )
+                        )
                         textView.text = inner[j]
                     }
 
                 }
             }
-            val link: String? = product.get_link()
-            if(link != null){
+            val link: String? = item.get_link()
+            if (link != null) {
                 linkTextView.visibility = 1
-                linkTextView.setOnClickListener{
+                linkTextView.setOnClickListener {
                     setContentView(R.layout.item_webview)
                     val webView: WebView = findViewById(R.id.webview)
                     webView.settings.javaScriptEnabled = true
@@ -65,12 +64,12 @@ class ItemActivity : Activity() {
                     webView.loadUrl(link)
                 }
             }
-            val desc: String? = product.get_desc()
-            if (desc != null){
+            val desc: String? = item.get_desc()
+            if (desc != null) {
                 descTextView.text = desc
             }
-            val origin: String? = product.get_origin()
-            if (desc != null){
+            val origin: String? = item.get_origin()
+            if (desc != null) {
                 originTextView.text = origin
             }
         }

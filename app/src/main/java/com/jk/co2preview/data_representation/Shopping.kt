@@ -1,9 +1,11 @@
 package com.jk.co2preview.data_representation
 
+import android.content.Context
 import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
+import com.jk.co2preview.database.DBHandler
 import com.jk.co2preview.database.DatabaseItem
 import java.lang.Math.round
 import java.time.LocalDate
@@ -33,6 +35,20 @@ class Shopping(items: MutableList<BuyItem>) {
 
     fun get_items(): MutableList<BuyItem> {
         return items
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun get_db_items(context: Context): MutableList<DatabaseItem> {
+        var res : MutableList<DatabaseItem> = mutableListOf()
+        val dbHandler = DBHandler(context, null, null, 1)
+        for(i in items){
+            i.name?.let { dbHandler.findProduct(it)?.let {
+                it ->
+                it.update(i)
+                res.add(it) }
+            }
+        }
+        return res
     }
 
 }

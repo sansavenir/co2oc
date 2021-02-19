@@ -95,7 +95,12 @@ class DBHandler(context: Context, name: String?,
                         price,
                         orig_price,
                         link,
-                        season
+                        season,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
                     )
                 }
                 products.add(product)
