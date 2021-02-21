@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jk.co2preview.BuyItemActivity.BuyItemInfo
 import com.jk.co2preview.data_representation.Shopping
 
 class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var numberOfTabs: Int, shopping: List<Shopping>) : FragmentStateAdapter(fm, lifecycle) {
@@ -22,7 +21,7 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 val genInfo = SeasonalVegies()
                 return genInfo
             }
-            else -> return BuyItemInfo()
+            else -> return SeasonalVegies()
         }
     }
 

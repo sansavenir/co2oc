@@ -1,6 +1,7 @@
 package com.jk.co2preview.database
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
@@ -27,32 +28,19 @@ class DBHandler(context: Context, name: String?,
         val name = productname.toLowerCase().replace("mclass", "m-classic").replace("mbud", "m-budget")
         var q : List<CharSequence> = name.split(' ')
         q = q.filter {!it.any{it2 -> isDigit(it2)}}
-        var q_str = q.joinToString( "%\" AND $COLUMN_PRODUCTNAME LIKE \"%", "$COLUMN_PRODUCTNAME LIKE \"%", "%\"")
-
-        val query =
-            "SELECT * FROM $TABLE_PRODUCTS WHERE $q_str"
-
+//        var q_str = q.joinToString( "%\" AND $COLUMN_PRODUCTNAME LIKE \"%", "$COLUMN_PRODUCTNAME LIKE \"%", "%\"")
+        var q_str = "name like \"%${q.joinToString(" ")}%\""
+//        var q_str = "name == \"${q.joinToString(" ")}\""
+        val query = "SELECT * FROM $TABLE_PRODUCTS WHERE $q_str"
         val db = this.writableDatabase
-
         val cursor = db.rawQuery(query, null)
 
         var product: DatabaseItem? = null
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst()
+            product = get_db_item(cursor)
 
-            val id = Integer.parseInt(cursor.getStringOrNull(0))
-            val name : String? = cursor.getStringOrNull(1)
-            val desc : String? = cursor.getStringOrNull(2)
-            val gen_info : String? = cursor.getStringOrNull(3)
-            val nutrients : String? = cursor.getStringOrNull(4)
-            val origin : String? = cursor.getStringOrNull(5)
-            val price : Float? = cursor.getFloatOrNull(6)
-            val orig_price : Float? = cursor.getFloatOrNull(7)
-            val link : String? = cursor.getStringOrNull(8)
-            val season : String? = cursor.getStringOrNull(9)
-
-            product = id?.let { DatabaseItem(it, name, desc, gen_info, nutrients, origin, price, orig_price, link, season) }
             cursor.close()
         }
 
@@ -73,37 +61,7 @@ class DBHandler(context: Context, name: String?,
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
 
-                val id = Integer.parseInt(cursor.getStringOrNull(0))
-                val name: String? = cursor.getStringOrNull(1)
-                val desc: String? = cursor.getStringOrNull(2)
-                val gen_info: String? = cursor.getStringOrNull(3)
-                val nutrients: String? = cursor.getStringOrNull(4)
-                val origin: String? = cursor.getStringOrNull(5)
-                val price: Float? = cursor.getFloatOrNull(6)
-                val orig_price: Float? = cursor.getFloatOrNull(7)
-                val link: String? = cursor.getStringOrNull(8)
-                val season: String? = cursor.getStringOrNull(9)
-
-                val product = id?.let {
-                    DatabaseItem(
-                        it,
-                        name,
-                        desc,
-                        gen_info,
-                        nutrients,
-                        origin,
-                        price,
-                        orig_price,
-                        link,
-                        season,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                    )
-                }
-                products.add(product)
+                products.add(get_db_item(cursor))
                 cursor.moveToNext();
             }
             cursor.close()
@@ -113,10 +71,29 @@ class DBHandler(context: Context, name: String?,
         return products
     }
 
+    private fun get_db_item(cursor: Cursor): DatabaseItem {
+        val id = Integer.parseInt(cursor.getStringOrNull(0))
+        val name : String? = cursor.getStringOrNull(1)
+        val desc : String? = cursor.getStringOrNull(2)
+        val gen_info : String? = cursor.getStringOrNull(3)
+        val nutrients : String? = cursor.getStringOrNull(4)
+        val origin : String? = cursor.getStringOrNull(5)
+        val price : Float? = cursor.getFloatOrNull(6)
+        val orig_price : Float? = cursor.getFloatOrNull(7)
+        val link : String? = cursor.getStringOrNull(8)
+        val season : String? = cursor.getStringOrNull(9)
+        val weight : Float? = cursor.getFloatOrNull(10)
+
+        val product = id?.let { DatabaseItem(id=it, name=name, desc=desc, gen_info=gen_info,
+                nutrients=nutrients, origin=origin, price=price, orig_price=orig_price,
+                link=link, season=season, null, null, null, null, null, weight=weight) }
+        return product
+    }
+
     companion object {
 
         private val DATABASE_VERSION = 1
-        private val DATABASE_NAME = "migros.db"
+        private val DATABASE_NAME = "full.db"
         val TABLE_PRODUCTS = "items"
 
         val COLUMN_ID = "id"

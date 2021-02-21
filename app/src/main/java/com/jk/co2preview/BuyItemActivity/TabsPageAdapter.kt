@@ -16,10 +16,10 @@ class TabsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle, private var nu
                 return recyclerView
             }
             1 -> {
-                val genInfo = BuyItemInfo()
+                val genInfo = BuyItemInfo(shopping)
                 return genInfo
             }
-            else -> return BuyItemInfo()
+            else -> return BuyItemInfo(shopping)
         }
     }
 

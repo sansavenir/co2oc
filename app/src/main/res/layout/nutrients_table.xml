@@ -16,32 +16,48 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Quantity"
                 android:width="200dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
+                android:text="100 g"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z02"
+                android:id="@+id/weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
+                android:text=""
+                android:textSize="15dp" />
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Energie"
+                android:width="200dp"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z03"
+                android:id="@+id/n00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="70dp"
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -51,28 +67,23 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
+                android:text="Fett"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z11"
+                android:id="@+id/n10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="100dp"
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -82,32 +93,24 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z20"
+                android:text="davon gesättigte Fettsäuren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
                 
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z21"
+                android:id="@+id/n20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z22"
+                android:id="@+id/n21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -117,32 +120,23 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
-                
+                android:text="Kohlenhydrate"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z31"
+                android:id="@+id/n30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z32"
+                android:id="@+id/n31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -152,32 +146,23 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
-                
+                android:text="davon Zucker"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z41"
+                android:id="@+id/n40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z42"
+                android:id="@+id/n41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z43"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -187,32 +172,23 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
-                
+                android:text="Ballaststoffe"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z51"
+                android:id="@+id/n50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z52"
+                android:id="@+id/n51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z53"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -222,32 +198,23 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z60"
                 android:layout_width="wrap_content"
+                android:text="Eiweiss"
                 android:layout_height="wrap_content"
                 android:width="200dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z61"
+                android:id="@+id/n60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z62"
+                android:id="@+id/n61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z63"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
 
@@ -257,71 +224,25 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:id="@+id/z70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200dp"
-                
+                android:text="Salz"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z71"
+                android:id="@+id/n70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/z72"
+                android:id="@+id/n71"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="70dp"
-                
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z73"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-                
+                android:text=""
                 android:textSize="15dp" />
         </TableRow>
-
-        <TableRow
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white" >
-            <TextView
-                android:id="@+id/z80"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="200dp"
-
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z81"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z82"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-
-                android:textSize="15dp" />
-            <TextView
-                android:id="@+id/z83"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
-
-                android:textSize="15dp" />
-        </TableRow>
-
-
 
 
     </TableLayout>

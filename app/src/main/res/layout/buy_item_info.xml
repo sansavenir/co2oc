@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    >
     <include
         layout="@layout/nutrients_table"
         />
     <TextView
-        android:id="@+id/z00"
+        android:id="@+id/item.origin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="200dp"
-        android:text="skdfjlksdfjls"
+        android:text="origin"
         android:textSize="15dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        layout="@layout/nutrients_table"
+        />
+
+</RelativeLayout>

@@ -12,8 +12,8 @@ import java.time.LocalDate
 data class DatabaseItem(
     private var id : Int = -1,
     private var name: String? = null,
-    private var gen_info: String? = null,
     private var desc: String? = null,
+    private var gen_info: String? = null,
     private var nutrients: String? = null,
     private var origin: String? = null,
     private var price: Float? = null,
@@ -24,7 +24,8 @@ data class DatabaseItem(
     private var old_name: String? = null,
     private var date: LocalDate? = null,
     private var action: Float? = null,
-    private var paid_price: Float? = null
+    private var paid_price: Float? = null,
+    private var weight: Float? = null,
 ): Parcelable {
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -44,17 +45,29 @@ data class DatabaseItem(
         parcel.readSerializable() as? LocalDate,
         parcel.readValue(Float::class.java.classLoader) as? Float,
         parcel.readValue(Float::class.java.classLoader) as? Float,
+        parcel.readValue(Float::class.java.classLoader) as? Float,
     )
-
-    fun get_nutrients(): MutableList<List<String>>? {
+    fun get_nutrients(): List<List<Float>>? {
         if (nutrients == null) {
             return null
         }
-        var res: MutableList<List<String>> = emptyList<List<String>>().toMutableList()
-        for (nut in this.nutrients?.split(';')!!.dropLast(1)) {
-            res.add(nut.split(','))
+        val w = this.get_weight()
+        val per100 = nutrients!!.split(',').map { it.toFloat() }
+
+        var tot = per100.map { it * w / 100}
+
+        return listOf(per100, tot)
+    }
+
+    fun get_weight(): Float {
+        var w : Float = 1.toFloat()
+        if(this.weight != null){
+            w *= this.weight!!
         }
-        return res
+        if(this.quantity != null){
+            w *= this.quantity!!
+        }
+        return w
     }
 
     fun update(buyItem: BuyItem){
@@ -82,15 +95,19 @@ data class DatabaseItem(
     }
 
     fun get_name(): String? {
-        return this.old_name
+        return if(this.old_name != null){
+            this.old_name
+        } else {
+            this.name
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
         parcel.writeString(name)
-        parcel.writeString(gen_info)
         parcel.writeString(desc)
+        parcel.writeString(gen_info)
         parcel.writeString(nutrients)
         parcel.writeString(origin)
         parcel.writeValue(price)
@@ -102,6 +119,7 @@ data class DatabaseItem(
         parcel.writeSerializable(date)
         parcel.writeValue(action)
         parcel.writeValue(paid_price)
+        parcel.writeValue(weight)
     }
 
     override fun describeContents(): Int {

@@ -33,24 +33,24 @@ class ItemActivity : Activity() {
             priceTextView.text = item.get_price().toString()
 //        quantTextView.text = item.quantity.toString()
 
-            val nutrients: MutableList<List<String>>? = item.get_nutrients()
+            val nutrients: List<List<Float>>? = item.get_nutrients()
 
             if (nutrients != null) {
+                val textView = findViewById<TextView>(R.id.weight)
+                textView.text = item.get_weight().toString()
                 val tableView = findViewById<TableLayout>(R.id.nutrients_table)
                 tableView.visibility = 1
                 for (i in nutrients.indices) {
-                    val inner: List<String> = nutrients[i]
-                    for (j in inner.indices) {
+                    for (j in nutrients[i].indices) {
                         val textView = findViewById<TextView>(
-                            resources.getIdentifier(
-                                "z$i$j",
-                                "id",
-                                this.getPackageName()
-                            )
+                                resources.getIdentifier(
+                                        "n$j$i",
+                                        "id",
+                                        this.getPackageName()
+                                )
                         )
-                        textView.text = inner[j]
+                        textView.text = nutrients[i][j].toString()
                     }
-
                 }
             }
             val link: String? = item.get_link()

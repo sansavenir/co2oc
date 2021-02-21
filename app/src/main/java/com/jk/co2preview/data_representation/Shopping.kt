@@ -38,7 +38,7 @@ class Shopping(items: MutableList<BuyItem>) {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun get_db_items(context: Context): MutableList<DatabaseItem> {
+    fun init_db_items(context: Context) {
         var res : MutableList<DatabaseItem> = mutableListOf()
         val dbHandler = DBHandler(context, null, null, 1)
         for(i in items){
@@ -46,6 +46,32 @@ class Shopping(items: MutableList<BuyItem>) {
                 it ->
                 it.update(i)
                 res.add(it) }
+            }
+        }
+        dbItems = res
+    }
+
+    fun get_db_items(): MutableList<DatabaseItem> {
+        return dbItems
+    }
+
+    fun get_all_origins(): String{
+        var res : MutableList<String> = mutableListOf()
+        for(i in dbItems){
+            i.get_origin()?.let { res.add(it) }
+        }
+        return res.distinct().joinToString()
+    }
+
+    fun get_sum_nutrients(): MutableList<Float> {
+        var res : MutableList<Float> = MutableList(8){ 0F }
+        for(i in dbItems){
+            val nut = i.get_nutrients()
+            if(nut == null){
+                continue
+            }
+            for(a in res.indices){
+                res[a] += nut!![1][a]
             }
         }
         return res
@@ -69,8 +95,7 @@ data class BuyItem(
         parcel.readFloat(),
         parcel.readFloat(),
         parcel.readFloat()
-    ) {
-    }
+    )
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun writeToParcel(parcel: Parcel, flags: Int) {

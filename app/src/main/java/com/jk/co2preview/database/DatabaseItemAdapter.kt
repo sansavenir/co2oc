@@ -25,7 +25,6 @@ class DatabaseItemAdapter (private val mDatabaseItems: List<DatabaseItem>) : Rec
         val nameTextView = itemView.findViewById<TextView>(R.id.buy_item_name)
         val costTextView = itemView.findViewById<TextView>(R.id.buy_item_cost)
         val recyclerView = itemView.findViewById<RelativeLayout>(R.id.buy_item_recycler)
-
     }
 
     // ... constructor and member variables
