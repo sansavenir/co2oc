@@ -24,35 +24,38 @@ class DBHandler(context: Context, name: String?,
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun findProduct(productname: String): DatabaseItem? {
-        val name = productname.toLowerCase().replace("mclass", "m-classic").replace("mbud", "m-budget")
-        var q : List<CharSequence> = name.split(' ')
+    fun completeProduct(product: DatabaseItem) {
+        val name = product.get_name()?.toLowerCase()?.replace("mclass", "m-classic")?.replace("mbud", "m-budget")
+        var q : List<CharSequence> = name!!.split(' ')
         q = q.filter {!it.any{it2 -> isDigit(it2)}}
 //        var q_str = q.joinToString( "%\" AND $COLUMN_PRODUCTNAME LIKE \"%", "$COLUMN_PRODUCTNAME LIKE \"%", "%\"")
         var q_str = "name like \"%${q.joinToString(" ")}%\""
 //        var q_str = "name == \"${q.joinToString(" ")}\""
-        val query = "SELECT * FROM $TABLE_PRODUCTS WHERE $q_str"
-        val db = this.writableDatabase
+        val query = "SELECT * FROM $TABLE_PRODUCTS WHERE $q_str ORDER BY ABS(${product.get_price()} - price)"
+        val db = this.readableDatabase
         val cursor = db.rawQuery(query, null)
 
-        var product: DatabaseItem? = null
+        var res: DatabaseItem? = null
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst()
-            product = get_db_item(cursor)
+            res = get_db_item(cursor)
 
             cursor.close()
         }
 
         db.close()
-        return product
+        if (res != null) {
+            product.update(res)
+        }
+
     }
 
     fun getSeasonalProducts(month: Int): MutableList<DatabaseItem> {
 
         val query = "SELECT * FROM $TABLE_PRODUCTS WHERE season like \'% $month %\'"
 
-        val db = this.writableDatabase
+        val db = this.readableDatabase
 
         val cursor = db.rawQuery(query, null)
 

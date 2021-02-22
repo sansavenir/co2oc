@@ -25,8 +25,8 @@ class BuyItemRV(shopping: Shopping) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.buy_item_rv, container, false)
         val rvShopping = view.findViewById<View>(R.id.rvShopping) as RecyclerView
-        this.context?.let { shopping.init_db_items(it) }
-        val db_items = this.context?.let { shopping.get_db_items()}
+        this.context?.let { shopping.init_items_from_db(it) }
+        val db_items = this.context?.let { shopping.get_items()}
         val adapter = db_items?.let { DatabaseItemAdapter(it) }
         rvShopping.adapter = adapter
         rvShopping.layoutManager = LinearLayoutManager(this.context)

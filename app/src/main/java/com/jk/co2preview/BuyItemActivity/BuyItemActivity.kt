@@ -11,8 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jk.co2preview.R
-import com.jk.co2preview.data_representation.BuyItem
 import com.jk.co2preview.data_representation.Shopping
+import com.jk.co2preview.database.DatabaseItem
 
 
 class BuyItemActivity : AppCompatActivity() {
@@ -24,8 +24,8 @@ class BuyItemActivity : AppCompatActivity() {
         setContentView(R.layout.buy_item_activity)
 
         val bundle = intent.extras
-        var shoppingList = bundle?.getParcelableArray("shoppingList")?.map { it -> it as BuyItem }
-        val shopping = Shopping(shoppingList as MutableList<BuyItem>)
+        var shoppingList = bundle?.getParcelableArray("shoppingList")?.map { it -> it as DatabaseItem }
+        val shopping = Shopping(shoppingList as MutableList<DatabaseItem>)
 
 
         // Tabs Customization

@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
-import com.jk.co2preview.data_representation.BuyItem
 import com.jk.co2preview.extras.extras
 import java.time.LocalDate
 
@@ -74,12 +73,59 @@ data class DatabaseItem(
         return w
     }
 
-    fun update(buyItem: BuyItem){
-        this.quantity = buyItem.quantity
-        this.old_name = buyItem.name
-        this.date = buyItem.date
-        this.action = buyItem.action
-        this.paid_price = buyItem.price
+    fun get_date(): LocalDate? {
+        return this.date
+    }
+
+    fun update(new: DatabaseItem){
+        if(this.id == null){
+            this.id = new.id
+        }
+        if(this.name == null){
+            this.name = new.name
+        }
+        if(this.desc == null){
+            this.desc = new.desc
+        }
+        if(this.gen_info == null){
+            this.gen_info = new.gen_info
+        }
+        if(this.nutrients == null){
+            this.nutrients = new.nutrients
+        }
+        if(this.origin == null){
+            this.origin = new.origin
+        }
+        if(this.price == null){
+            this.price = new.price
+        }
+        if(this.orig_price == null){
+            this.orig_price = new.orig_price
+        }
+        if(this.link == null){
+            this.link = new.link
+        }
+        if(this.season == null){
+            this.season = new.season
+        }
+        if(this.quantity == null){
+            this.quantity = new.quantity
+        }
+        if(this.old_name == null){
+            this.old_name = new.old_name
+        }
+        if(this.date == null){
+            this.date = new.date
+        }
+        if(this.action == null){
+            this.action = new.action
+        }
+        if(this.paid_price == null){
+            this.paid_price = new.paid_price
+        }
+        if(this.weight == null){
+            this.weight = new.weight
+        }
     }
 
     fun get_link(): String? {

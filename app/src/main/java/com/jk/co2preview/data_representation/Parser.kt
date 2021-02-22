@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Environment
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import com.jk.co2preview.database.DatabaseItem
 import java.io.BufferedReader
 import java.io.FileReader
 import java.time.LocalDate
@@ -52,12 +53,12 @@ class Parser {
                     current_date = date
                 }
                 single_shopping.add_item(
-                    BuyItem(
-                        date,
-                        tokens[5],
-                        tokens[6].toFloat(),
-                        tokens[7].toFloat(),
-                        tokens[8].toFloat(),
+                    DatabaseItem(
+                        date = date,
+                        name = tokens[5],
+                        quantity = tokens[6].toFloat(),
+                        action = tokens[7].toFloat(),
+                        paid_price = tokens[8].toFloat(),
                     )
                 )
 
