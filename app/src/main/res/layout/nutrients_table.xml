@@ -16,23 +16,31 @@
             android:layout_height="match_parent"
             android:background="@color/white" >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Quantity"
                 android:width="200dp"
                 android:textSize="15dp" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:width="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:width="65dp"
                 android:text="100 g"
+                android:gravity="center"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
+                android:text="%"
+                android:gravity="center"
                 android:textSize="15dp" />
         </TableRow>
         <TableRow
@@ -50,13 +58,20 @@
                 android:id="@+id/n00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -76,13 +91,20 @@
                 android:id="@+id/n10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="100dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -103,13 +125,20 @@
                 android:id="@+id/n20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -129,13 +158,20 @@
                 android:id="@+id/n30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -155,13 +191,20 @@
                 android:id="@+id/n40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n41"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -181,13 +224,20 @@
                 android:id="@+id/n50"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -207,13 +257,20 @@
                 android:id="@+id/n60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>
@@ -233,13 +290,20 @@
                 android:id="@+id/n70"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
                 android:textSize="15dp" />
             <TextView
                 android:id="@+id/n71"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:width="70dp"
+                android:width="65dp"
+                android:text=""
+                android:textSize="15dp" />
+            <TextView
+                android:id="@+id/n72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="65dp"
                 android:text=""
                 android:textSize="15dp" />
         </TableRow>

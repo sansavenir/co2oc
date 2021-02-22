@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.jk.co2preview.R
 import com.jk.co2preview.data_representation.Shopping
+import kotlin.math.roundToInt
 
 class BuyItemInfo(shopping: Shopping) : Fragment() {
 
@@ -28,14 +29,16 @@ class BuyItemInfo(shopping: Shopping) : Fragment() {
         val tableView = view.findViewById<TableLayout>(R.id.nutrients_table)
         tableView.visibility = 1
         for (i in nutrients.indices) {
-            val textView = view.findViewById<TextView>(
-                    resources.getIdentifier(
-                            "n${i}0",
-                            "id",
-                            this.context?.packageName
-                    )
-            )
-            textView.text = nutrients[i].toString()
+            for (j in nutrients[i].indices) {
+                val textView = view.findViewById<TextView>(
+                        resources.getIdentifier(
+                                "n$j${i+1}",
+                                "id",
+                                this.context?.getPackageName()
+                        )
+                )
+                textView.text = ((nutrients[i][j] * 10.0).roundToInt() / 10.0).toString()
+            }
         }
 
 
@@ -43,3 +46,4 @@ class BuyItemInfo(shopping: Shopping) : Fragment() {
     }
 
 }
+

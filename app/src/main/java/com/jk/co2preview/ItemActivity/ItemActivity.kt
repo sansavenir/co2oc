@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.jk.co2preview.R
 import com.jk.co2preview.database.DatabaseItem
+import kotlin.math.roundToInt
 
 
 class ItemActivity : Activity() {
@@ -49,7 +50,7 @@ class ItemActivity : Activity() {
                                         this.getPackageName()
                                 )
                         )
-                        textView.text = nutrients[i][j].toString()
+                        textView.text = ((nutrients[i][j] * 10.0).roundToInt() / 10.0).toString()
                     }
                 }
             }

@@ -7,6 +7,7 @@ import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import com.jk.co2preview.database.DBHandler
 import com.jk.co2preview.database.DatabaseItem
+import com.jk.co2preview.extras.extras
 import java.lang.Math.round
 import java.time.LocalDate
 
@@ -63,7 +64,7 @@ class Shopping(items: MutableList<BuyItem>) {
         return res.distinct().joinToString()
     }
 
-    fun get_sum_nutrients(): MutableList<Float> {
+    fun get_sum_nutrients(): List<List<Float>> {
         var res : MutableList<Float> = MutableList(8){ 0F }
         for(i in dbItems){
             val nut = i.get_nutrients()
@@ -74,7 +75,9 @@ class Shopping(items: MutableList<BuyItem>) {
                 res[a] += nut!![1][a]
             }
         }
-        return res
+        val ext = extras()
+        var perc = res.mapIndexed { ind, it -> it / ext.daily_nutrion[ind] * 100 }
+        return listOf(res,perc)
     }
 
 }

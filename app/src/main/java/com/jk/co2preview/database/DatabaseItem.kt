@@ -5,6 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
 import com.jk.co2preview.data_representation.BuyItem
+import com.jk.co2preview.extras.extras
 import java.time.LocalDate
 
 
@@ -55,13 +56,16 @@ data class DatabaseItem(
         val per100 = nutrients!!.split(',').map { it.toFloat() }
 
         var tot = per100.map { it * w / 100}
+        val ext = extras()
+        var perc = tot.mapIndexed { ind, it -> it / ext.daily_nutrion[ind] * 100}
 
-        return listOf(per100, tot)
+        return listOf(per100, tot, perc)
     }
 
     fun get_weight(): Float {
-        var w : Float = 1.toFloat()
+        var w = 100F
         if(this.weight != null){
+            w = 1F
             w *= this.weight!!
         }
         if(this.quantity != null){
