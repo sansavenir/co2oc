@@ -56,7 +56,7 @@ class ShoppingAdapter (private val mShoopings: List<Shopping>) : RecyclerView.Ad
         val dayView = viewHolder.dayTextView
         dayView.text = shopping.get_day()
         val co2View = viewHolder.co2TextView
-        co2View.text = "${((shopping.get_sum_co2().sum()*10).toInt()/10F)} kg of co2"
+        co2View.text = "${shopping.get_sum_co2().sum().round(1)} kg of co2"
 
         viewHolder.recyclerView.setOnClickListener{
             val intent = Intent(context, BuyItemActivity::class.java)
@@ -70,4 +70,10 @@ class ShoppingAdapter (private val mShoopings: List<Shopping>) : RecyclerView.Ad
     override fun getItemCount(): Int {
         return mShoopings.size
     }
+}
+
+private fun Float.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return kotlin.math.round(this * multiplier) / multiplier
 }

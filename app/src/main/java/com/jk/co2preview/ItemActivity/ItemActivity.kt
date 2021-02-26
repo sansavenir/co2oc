@@ -17,6 +17,10 @@ import kotlin.math.roundToInt
 class ItemActivity : Activity() {
     @SuppressLint("WrongViewCast", "WrongConstant")
     @RequiresApi(Build.VERSION_CODES.N)
+
+    var in_web_view = false
+
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
@@ -59,6 +63,7 @@ class ItemActivity : Activity() {
                 linkTextView.visibility = 1
                 linkTextView.setOnClickListener {
                     setContentView(R.layout.item_webview)
+                    in_web_view = true
                     val webView: WebView = findViewById(R.id.webview)
                     webView.settings.javaScriptEnabled = true
                     webView.webViewClient = WebViewClient()
@@ -78,6 +83,14 @@ class ItemActivity : Activity() {
 
 
     }
+
+//    override fun onBackPressed() {
+//        if (!in_web_view) {
+//            super.onBackPressed()
+//        } else {
+//            in_web_view = false
+//        }
+//    }
 
 
 }

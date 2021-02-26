@@ -1,12 +1,13 @@
 package com.jk.co2preview
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,9 @@ class DatabaseItemAdapter (private val mDatabaseItems: List<DatabaseItem>) : Rec
         // for any view that will be set as you render a row
         val nameTextView = itemView.findViewById<TextView>(R.id.buy_item_name)
         val costTextView = itemView.findViewById<TextView>(R.id.buy_item_cost)
-        val recyclerView = itemView.findViewById<RelativeLayout>(R.id.buy_item_recycler)
+        val co2TextView = itemView.findViewById<TextView>(R.id.buy_item_c02)
+        val seasonTextView = itemView.findViewById<TextView>(R.id.buy_item_season)
+        val recyclerView = itemView.findViewById<LinearLayout>(R.id.buy_item_recycler)
     }
 
     // ... constructor and member variables
@@ -39,15 +42,35 @@ class DatabaseItemAdapter (private val mDatabaseItems: List<DatabaseItem>) : Rec
     }
 
     // Involves populating data into the item through holder
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(viewHolder: DatabaseItemAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // Get the data model based on position
         val databaseItem: DatabaseItem = mDatabaseItems[position]
         // Set item views based on your views and data model
         val nameView = viewHolder.nameTextView
         nameView.text = databaseItem.get_name()
+
         val costView = viewHolder.costTextView
-        costView.text = databaseItem.get_price().toString()
+        val price = databaseItem.get_price()
+        if (price != null){
+            costView.text = "${"%.2f".format(price)}.-"
+        }
+
+        val co2View = viewHolder.co2TextView
+        val co2 = databaseItem.get_co2()
+        if (co2 != null){
+            co2View.text = "${"%.2f".format(co2.sum().round(2))} kg co2"
+        } else{
+            co2View.text = ""
+        }
+
+        val seasonView = viewHolder.seasonTextView
+        val season = databaseItem.get_season()
+        if (season != null){
+            seasonView.text = season
+        }
+
         viewHolder.recyclerView.setOnClickListener{
             val intent = Intent(context, ItemActivity::class.java)
             intent.putExtra("item", databaseItem)
@@ -62,3 +85,10 @@ class DatabaseItemAdapter (private val mDatabaseItems: List<DatabaseItem>) : Rec
         return mDatabaseItems.size
     }
 }
+
+private fun Float.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return kotlin.math.round(this * multiplier) / multiplier
+}
+

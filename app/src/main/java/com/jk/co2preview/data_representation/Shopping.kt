@@ -6,7 +6,6 @@ import androidx.annotation.RequiresApi
 import com.jk.co2preview.database.DBHandler
 import com.jk.co2preview.database.DatabaseItem
 import com.jk.co2preview.extras.extras
-import java.lang.Math.round
 
 
 class Shopping(items: MutableList<DatabaseItem>) {
@@ -39,7 +38,7 @@ class Shopping(items: MutableList<DatabaseItem>) {
     }
 
     fun get_cost(): Double {
-        return round(items.sumByDouble { it.get_price()!!.toDouble() } * 100) / 100.0
+        return items.sumByDouble { it.get_price()!!.toDouble() }.round(2)
     }
 
 
@@ -93,4 +92,10 @@ class Shopping(items: MutableList<DatabaseItem>) {
         return listOf(res,perc)
     }
 
+}
+
+private fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return kotlin.math.round(this * multiplier) / multiplier
 }

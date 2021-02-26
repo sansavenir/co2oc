@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/buy_item.recycler"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
-    android:layout_marginLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="3dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingLeft="6dp"
     >
-
 
     <TextView
         android:id="@+id/buy_item.name"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:text="name"
+        android:gravity="center_vertical"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/buy_item.cost"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:text="name: "
-        android:layout_margin="0dp"
+        android:text=""
         android:textSize="15dp"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/buy_item.c02"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="260dp"
-        >
+        android:text=""
+        android:textSize="15dp"
+        />
 
-        <TextView
-            android:id="@+id/buy_item.cost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cost:"
-            android:layout_margin="0dp"
-            android:textSize="15dp"
-            tools:ignore="Suspicious0dp"
+    <TextView
+        android:id="@+id/buy_item.season"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="15dp"
+        />
 
-            />
-
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

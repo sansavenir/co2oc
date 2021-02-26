@@ -146,7 +146,13 @@ data class DatabaseItem(
     }
 
     fun get_price(): Float? {
-        return this.paid_price
+        if(paid_price != null){
+            return this.paid_price
+        } else if(orig_price != null) {
+            return this.orig_price
+        } else {
+            return this.price
+        }
     }
 
     fun get_name(): String? {
@@ -163,6 +169,17 @@ data class DatabaseItem(
         }
         val w = this.get_weight()
         return this.co2!!.split(',').map { it.toFloat() }.map { it * w / 1000}
+    }
+
+    fun get_season(): String?{
+        if(this.season == null){
+            return null
+        }
+        val months = season!!.split(" ")
+        val start = months[1].toInt()
+        val end = months[months.lastIndex - 1].toInt()
+        val ext = extras()
+        return "${ext.months[start]} - ${ext.months[end]}"
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

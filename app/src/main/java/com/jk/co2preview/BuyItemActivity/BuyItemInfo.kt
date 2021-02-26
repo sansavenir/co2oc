@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.jk.co2preview.R
 import com.jk.co2preview.data_representation.Shopping
-import kotlin.math.roundToInt
 
 class BuyItemInfo(shopping: Shopping) : Fragment() {
 
@@ -37,13 +36,13 @@ class BuyItemInfo(shopping: Shopping) : Fragment() {
                                 this.context?.getPackageName()
                         )
                 )
-                textView.text = ((nutrients[i][j] * 10.0).roundToInt() / 10.0).toString()
+                textView.text = nutrients[i][j].round(1).toString()
             }
         }
 
         val co2TextView = view.findViewById<TextView>(R.id.item_co2)
         val co2 = shopping.get_sum_co2()
-        val txt = co2.map{(it*10).toInt()/10F}.joinToString ( "," )
+        val txt = co2.map{it.round(1)}.joinToString ( "," )
         co2TextView.text = txt
 
 
@@ -51,5 +50,11 @@ class BuyItemInfo(shopping: Shopping) : Fragment() {
         return view
     }
 
+}
+
+private fun Float.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return kotlin.math.round(this * multiplier) / multiplier
 }
 

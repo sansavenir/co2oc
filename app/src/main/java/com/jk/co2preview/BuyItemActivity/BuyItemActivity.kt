@@ -69,6 +69,14 @@ class BuyItemActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        if (tabs_viewpager?.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            tabs_viewpager?.currentItem = 0
+        }
+    }
+
     private fun setCustomTabTitles() {
         val vg = this.tab_layout?.getChildAt(0) as ViewGroup
         val tabsCount = vg.childCount
