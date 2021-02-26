@@ -26,6 +26,7 @@ data class DatabaseItem(
     private var action: Float? = null,
     private var paid_price: Float? = null,
     private var weight: Float? = null,
+    private var co2: String? = null,
 ): Parcelable {
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -46,7 +47,8 @@ data class DatabaseItem(
         parcel.readValue(Float::class.java.classLoader) as? Float,
         parcel.readValue(Float::class.java.classLoader) as? Float,
         parcel.readValue(Float::class.java.classLoader) as? Float,
-    )
+        parcel.readString(),
+        )
     fun get_nutrients(): List<List<Float>>? {
         if (nutrients == null) {
             return null
@@ -126,6 +128,9 @@ data class DatabaseItem(
         if(this.weight == null){
             this.weight = new.weight
         }
+        if(this.co2 == null){
+            this.co2 = new.co2
+        }
     }
 
     fun get_link(): String? {
@@ -152,6 +157,14 @@ data class DatabaseItem(
         }
     }
 
+    fun get_co2(): List<Float>? {
+        if(this.co2 == null){
+            return null
+        }
+        val w = this.get_weight()
+        return this.co2!!.split(',').map { it.toFloat() }.map { it * w / 1000}
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
@@ -170,6 +183,7 @@ data class DatabaseItem(
         parcel.writeValue(action)
         parcel.writeValue(paid_price)
         parcel.writeValue(weight)
+        parcel.writeString(co2)
     }
 
     override fun describeContents(): Int {

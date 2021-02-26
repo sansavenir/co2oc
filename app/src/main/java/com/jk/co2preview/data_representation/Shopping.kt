@@ -26,6 +26,18 @@ class Shopping(items: MutableList<DatabaseItem>) {
         return "${date.dayOfMonth}.${date.monthValue}.${date.year}"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun get_month():String{
+        val date = items.first().get_date()!!
+        return date.month.toString().toLowerCase().capitalize()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun get_day():String{
+        val date = items.first().get_date()!!
+        return date.dayOfMonth.toString()
+    }
+
     fun get_cost(): Double {
         return round(items.sumByDouble { it.get_price()!!.toDouble() } * 100) / 100.0
     }
@@ -49,6 +61,20 @@ class Shopping(items: MutableList<DatabaseItem>) {
             i.get_origin()?.let { res.add(it) }
         }
         return res.distinct().joinToString()
+    }
+
+    fun get_sum_co2(): List<Float>{
+        var res : MutableList<Float> = MutableList(7){ 0F }
+        for(i in items){
+            val nut = i.get_co2()
+            if(nut == null){
+                continue
+            }
+            for(a in res.indices){
+                res[a] += nut[a]
+            }
+        }
+        return res
     }
 
     fun get_sum_nutrients(): List<List<Float>> {

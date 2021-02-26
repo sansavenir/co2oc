@@ -41,6 +41,12 @@ class BuyItemInfo(shopping: Shopping) : Fragment() {
             }
         }
 
+        val co2TextView = view.findViewById<TextView>(R.id.item_co2)
+        val co2 = shopping.get_sum_co2()
+        val txt = co2.map{(it*10).toInt()/10F}.joinToString ( "," )
+        co2TextView.text = txt
+
+
 
         return view
     }

@@ -27,7 +27,7 @@ class ItemActivity : Activity() {
         val quantTextView = findViewById<TextView>(R.id.item_quant)
         val descTextView = findViewById<TextView>(R.id.item_desc)
         val linkTextView = findViewById<TextView>(R.id.item_link)
-        val originTextView = findViewById<TextView>(R.id.item_origin)
+        val co2TextView = findViewById<TextView>(R.id.item_co2)
 
         if(item != null) {
             nameTextView.text = item.get_name()
@@ -69,10 +69,11 @@ class ItemActivity : Activity() {
             if (desc != null) {
                 descTextView.text = desc
             }
-            val origin: String? = item.get_origin()
-            if (desc != null) {
-                originTextView.text = origin
+            val co2: String? = item.get_co2()?.map{(it*10).toInt()/10F}?.joinToString(",")
+            if (co2 != null) {
+                co2TextView.text = co2
             }
+
         }
 
 

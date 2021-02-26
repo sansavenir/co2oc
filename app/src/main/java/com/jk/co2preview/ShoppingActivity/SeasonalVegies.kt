@@ -30,8 +30,6 @@ class SeasonalVegies : Fragment() {
         rvShopping.adapter = adapter
         rvShopping.layoutManager = LinearLayoutManager(this.context)
 
-
-
         return view
     }
 

@@ -25,14 +25,19 @@ Item.Base.metadata.create_all()
 
 Session = sessionmaker(bind=Item.engine)
 s = Session()
-for (k,r) in tqdm(enumerate(data), total=len(data)):
+for (k, r) in tqdm(enumerate(data), total=len(data)):
   r.mod_gen_info()
   r.mod_nutrients_info()
   r.mod_origin()
   r.mod_price()
   r.mod_orig_price()
-  r.mod_name()
   r.id = k
   r.mod_desc()
+  r.mod_co2()
+  r.mod_name()
+
+
   s.add(r)
+
+
 s.commit()

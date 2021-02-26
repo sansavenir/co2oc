@@ -8,6 +8,9 @@ from google_trans_new import google_translator
 import numpy as np
 import time
 from country_list import countries_for_language
+import csv
+import co2.addco2 as co2
+
 
 countries_de = set(dict(countries_for_language('de')).values())
 countries_fr = set(dict(countries_for_language('fr')).values())
@@ -27,8 +30,10 @@ months[4] = 'mai'
 s_months = set([a.lower() for a in months])
 
 
-engine = create_engine('sqlite://///Users/jakubkotal/Desktop/migdata/full.db')
+engine = create_engine('sqlite://///Users/jakubkotal/AndroidStudioProjects/co2preview/parser/full.db')
 Base = declarative_base(bind=engine)
+
+
 
 
 class Item(Base):
@@ -44,9 +49,10 @@ class Item(Base):
   link = Column(String, nullable=True)
   season = Column(String, nullable=True)
   weight = Column(Float, nullable=True)
+  co2 = Column(String, nullable=True)
 
-  def __init__(self, name, desc, gen_info, nutrients, origin, price, orig_price, link):
-    self.id = 0
+  def __init__(self, id, name, desc, gen_info, nutrients, origin, price, orig_price, link, weight, co2):
+    self.id = id
     self.name = name
     self.desc = desc
     self.gen_info = gen_info
@@ -55,7 +61,8 @@ class Item(Base):
     self.price = price
     self.orig_price = orig_price
     self.link = link
-    self.weight = -1.
+    self.weight = weight
+    self.co2 = co2
 
   def __str__(self):
     print(self.name if self.name is not None else '')
@@ -144,34 +151,51 @@ class Item(Base):
         self.weight = '-1.'
       else:
         self.weight = self.weight.split(',')[0]
-      multiplier = 1.
-      if 'x' in self.weight:
-        self.weight = self.weight.split('x')
-        multiplier = float(re.findall(r"[-+]?\d*\.\d+|\d+", self.weight[0])[0])
-        self.weight = self.weight[1]
-
-      n = re.findall(r"[-+]?\d*\.\d+|\d+", self.weight)
-      if 'kg' in self.weight:
-        self.weight = 1000*float(n[0] if len(n) > 0 else 0)
-      elif 'ml' in self.weight:
-        self.weight = float(n[0] if len(n) > 0 else 0)
-      elif 'cl' in self.weight:
-        self.weight = 10*float(n[0] if len(n) > 0 else 0)
-      elif 'dl' in self.weight:
-        self.weight = 100*float(n[0] if len(n) > 0 else 0)
-      elif 'l' in self.weight or 'L' in self.weight:
-        self.weight = 1000*float(n[0] if len(n) > 0 else 0)
-      elif 'g' in self.weight:
-        self.weight = float(n[0] if len(n) > 0 else 0)
-      else:
-        self.weight = float(n[0] if len(n) > 0 else 0)
-      self.weight *= multiplier
+      self.weight = self._get_weight(self.weight)
 
 
-
+  def mod_co2(self):
+    self.name = self.name.lower()
+    for (k,n1) in enumerate(co2.names):
+      for n2 in n1:
+        if n2 in self.name:
+          self.co2 = ",".join(co2.co2_data[k + 1, 1:-1])
+          print(self.name, self.co2)
 
 
   def mod_name(self):
     self.name = self.name.lower()
+    n = re.findall(r"[-+]?\d*\.\d+|\d+", self.name)
+    if len(n) > 0:
+      if self.weight is None or self.weight < 10:
+        self.weight = self._get_weight(self.name[self.name.index(n[0]):])
+
+
+  def _get_weight(self, weight):
+    multiplier = 1.
+    if 'x' in weight:
+      weight = weight.split('x')
+      multiplier = float(re.findall(r"[-+]?\d*\.\d+|\d+", weight[0])[0])
+      weight = weight[1]
+
+    n = re.findall(r"[-+]?\d*\.\d+|\d+", weight)
+    if 'kg' in weight:
+      weight = 1000 * float(n[0] if len(n) > 0 else 0)
+    elif 'ml' in weight:
+      weight = float(n[0] if len(n) > 0 else 0)
+    elif 'cl' in weight:
+      weight = 10 * float(n[0] if len(n) > 0 else 0)
+    elif 'dl' in weight:
+      weight = 100 * float(n[0] if len(n) > 0 else 0)
+    elif 'l' in weight or 'L' in weight:
+      weight = 1000 * float(n[0] if len(n) > 0 else 0)
+    elif 'g' in weight:
+      weight = float(n[0] if len(n) > 0 else 0)
+    else:
+      weight = float(n[0] if len(n) > 0 else 0)
+    weight *= multiplier
+
+    return weight
+
 
 

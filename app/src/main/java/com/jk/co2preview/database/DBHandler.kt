@@ -86,10 +86,11 @@ class DBHandler(context: Context, name: String?,
         val link : String? = cursor.getStringOrNull(8)
         val season : String? = cursor.getStringOrNull(9)
         val weight : Float? = cursor.getFloatOrNull(10)
+        val co2 : String? = cursor.getStringOrNull(11)
 
         val product = id?.let { DatabaseItem(id=it, name=name, desc=desc, gen_info=gen_info,
                 nutrients=nutrients, origin=origin, price=price, orig_price=orig_price,
-                link=link, season=season, null, null, null, null, null, weight=weight) }
+                link=link, season=season, null, null, null, null, null, weight=weight, co2=co2) }
         return product
     }
 
